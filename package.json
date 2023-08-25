@@ -1,5 +1,6 @@
 {
-  "name": "pictura",
+  "name": "gallery",
+  "description": "A Gallery Search App that uses Unsplash and is made with React.",
   "version": "0.1.0",
   "private": true,
   "scripts": {
