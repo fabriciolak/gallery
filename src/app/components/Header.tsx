@@ -6,7 +6,7 @@ export function Header() {
     <header className="w-full h-20">
       <div
         role="navigation"
-        className="flex flex-1 h-full justify-between items-center xl:w-content xl:mx-auto p-6 xl:p-0"
+        className="flex flex-1 h-full justify-between items-center xl:w-content xl:mx-auto p-6 xl:p-4"
       >
         <h2 title="Gallery" className="font-bold text-2xl">
           Gallery
