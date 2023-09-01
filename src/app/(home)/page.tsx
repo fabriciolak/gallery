@@ -1,117 +1,83 @@
+import * as React from 'react'
+import { Button } from '@/components/Button'
+import { Link } from '@/components/Link'
+import { tw } from '#/lib/utils'
+import { Search } from 'lucide-react'
+
 import Image from 'next/image'
+import OceanFloorImage from '#/assets/images/islands-of-neom-neom-saudi-arabia.jpg'
 
-export default function page() {
+export default function Page() {
   return (
-    <div className="h-screen lg:grid lg:grid-cols-8 lg:grid-rows-4 flex flex-col p-6 justify-center">
-      <div className="lg:col-start-2 lg:col-end-4 lg:row-start-2 lg:row-end-3 w-full c">
-        <div>
-          <h1 className="text-9xl font-bold text-zinc-900">Gallery</h1>
+    <div className="w-full h-full xl:w-content xl:mx-auto space-y-12 py-6">
+      {/* Heading */}
+      <div className="w-full xl:w-heading-size xl:mx-auto p-6 xl:p-4 flex flex-col gap-6">
+        <div className="w-full space-y-6">
+          <h1 className="font-bold text-6xl text-center">
+            Find Stunning Images in a Snap!
+          </h1>
+          <p className="font-medium text-lg text-center">
+            Unlock Beauty. Powered by{' '}
+            <Button
+              name="Unsplash website"
+              asChild
+              type="button"
+              variant="link"
+            >
+              <Link
+                href="https://unsplash.com/developers"
+                target="_blank"
+                rel="noreferrer"
+                role="https://unsplash.com/developers"
+                className="text-lg font-medium px-0"
+              >
+                The Unsplash API
+              </Link>
+            </Button>
+            .
+          </p>
         </div>
-        <div className="mt-6">
-          <span className="text-lg font-medium mt-6 text-zinc-500">
-            A Gallery Search App that uses Unsplash and is made with React.
-          </span>
+
+        {/* Search input */}
+        <form
+          className={tw(
+            'w-full p-2 flex justify-center gap-2 items-center rounded-lg',
+            'border border-zinc-400 focus-within:ring focus-within:ring-offset-2 focus-within:ring-zinc-400',
+          )}
+        >
+          <Button type="submit" className="w-11 h-11">
+            <Search className="h-5 w-5  text-zinc-500" />
+          </Button>
+
+          <input
+            type="text"
+            placeholder="Search for an image"
+            className="flex-1 px-4 py-2 rounded-lg text-lg outline-none text-zinc-700 font-medium placeholder:text-zinc-400"
+          />
+        </form>
+
+        {/* Categories */}
+        <div role="categories" className="flex gap-2 w-full">
+          <Button type="button" variant="outline" size="sm" asChild>
+            <Link href="/">Nature</Link>
+          </Button>
+          <Button type="button" variant="outline" size="sm" asChild>
+            <Link href="/">Health and wellness</Link>
+          </Button>
+          <Button type="button" variant="outline" size="sm" asChild>
+            <Link href="/">3D Renders</Link>
+          </Button>
+          <Button type="button" variant="outline" size="sm" asChild>
+            <Link href="/">Film</Link>
+          </Button>
         </div>
       </div>
 
-      <div className="mt-6 lg:col-start-2 lg:col-end-4 lg:row-start-3 lg:row-end-4">
-        <div className="p-2 lg:p-0 flex flex-col lg:flex-row gap-4">
-          <button
-            type="button"
-            className="flex-1 disabled:cursor-not-allowed disabled:bg-zinc-400 focus-within:ring-4 focus-within:ring-zinc-400 bg-zinc-800 hover:bg-zinc-900 px-6 py-4 rounded-md font-bold text-zinc-100"
-          >
-            Sign Up
-          </button>
-          <button
-            type="button"
-            className="flex-1 border-zinc-500 focus-within:ring-4 focus-within:ring-zinc-400 border hover:bg-zinc-600 px-6 py-4 rounded-md font-bold text-zinc-900 hover:text-zinc-100"
-          >
-            Sign In
-          </button>
-        </div>
-      </div>
+      {/* Masonry layout */}
 
-      {/* Image grid top */}
-      <div className="hidden lg:block col-start-5 col-end-6 row-start-1 row-end-4 p-2">
-        <div className="bg-white h-full relative rounded-md">
-          <Image
-            src="https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
-            alt="Whangarei Falls, Whangarei, New Zealand"
-            fill={true}
-            objectFit="cover"
-            loading="lazy"
-            quality={80}
-            className="rounded-md"
-          />
-        </div>
-      </div>
-      <div className="hidden lg:block col-start-6 col-end-7 row-start-1 row-end-3 p-2">
-        <div className="bg-white h-full relative rounded-md">
-          <Image
-            src="https://images.unsplash.com/photo-1512144915806-39e29c5565a9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2076&q=80"
-            alt="Whangarei Falls, Whangarei, New Zealand"
-            fill={true}
-            objectFit="cover"
-            loading="lazy"
-            quality={80}
-            className="rounded-md"
-          />
-        </div>
-      </div>
-      <div className="hidden lg:block col-start-7 col-end-8 row-start-1 row-end-2 p-2">
-        <div className="bg-white h-full relative rounded-md">
-          <Image
-            src="https://images.unsplash.com/photo-1527527773165-340e532ca3ae?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1976&q=80"
-            alt="Whangarei, New Zealand"
-            fill={true}
-            objectFit="cover"
-            loading="lazy"
-            quality={80}
-            className="rounded-md"
-          />
-        </div>
-      </div>
-
-      {/* Image grid bottom */}
-
-      <div className="hidden lg:block col-start-5 col-end-6 row-start-4 p-2">
-        <div className="bg-white relative h-full rounded-md">
-          <Image
-            src="https://images.unsplash.com/photo-1682685796852-aa311b46f50d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxzZWFyY2h8OHx8bmF0dXJlfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=80"
-            alt="Hisma Desert – NEOM, Saudi Arabia"
-            fill={true}
-            objectFit="cover"
-            loading="lazy"
-            quality={80}
-            className="rounded-md"
-          />
-        </div>
-      </div>
-      <div className="hidden lg:block col-start-6 col-end-7 row-start-3 row-end-5 p-2">
-        <div className="bg-white h-full relative rounded-md">
-          <Image
-            src="https://images.unsplash.com/photo-1505144808419-1957a94ca61e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2126&q=80"
-            alt="Maldives"
-            fill={true}
-            objectFit="cover"
-            loading="lazy"
-            quality={80}
-            className="rounded-md"
-          />
-        </div>
-      </div>
-      <div className="hidden lg:block col-start-7 col-end-8 row-start-2 row-end-5 p-2">
-        <div className="bg-white relative h-full rounded-md">
-          <Image
-            src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2074&q=80"
-            alt="Ciucaș Peak, Romania"
-            fill={true}
-            objectFit="cover"
-            loading="lazy"
-            quality={80}
-            className="rounded-md"
-          />
-        </div>
+      <div className="w-full text-center">
+        <span className="font-medium text-xs">Search for images for free</span>
+        <div className="w-full xl:p-4 grid grid-cols-2 xl:grid-cols-3 grid-rows-2"></div>
       </div>
     </div>
   )

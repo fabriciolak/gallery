@@ -2,17 +2,21 @@
 
 import * as React from 'react'
 import NextLink, { type LinkProps as NextLinkProps } from 'next/link'
+import { tw } from '#/lib/utils'
 
 export type LinkProps = React.AnchorHTMLAttributes<HTMLAnchorElement>
 
 const Link = React.forwardRef<HTMLAnchorElement, NextLinkProps & LinkProps>(
-  ({ children, ...props }, ref) => {
+  ({ children, className, ...props }, ref) => {
     return (
       <NextLink
-        ref={ref}
         {...props}
         passHref
-        className="focus:ring-2 focus:ring-offset-1 focus:ring-zinc-400 focus:rounded-sm outline-none"
+        ref={ref}
+        className={tw(
+          'focus:ring-2 focus:ring-offset-1 focus:ring-zinc-400 rounded-sm outline-none',
+          className,
+        )}
       >
         <span>{children}</span>
       </NextLink>
