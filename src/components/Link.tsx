@@ -2,7 +2,7 @@
 
 import * as React from 'react'
 import NextLink, { type LinkProps as NextLinkProps } from 'next/link'
-import { tw } from '#/lib/utils'
+import { tw } from '@/lib/utils'
 
 export type LinkProps = React.AnchorHTMLAttributes<HTMLAnchorElement>
 

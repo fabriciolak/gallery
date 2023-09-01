@@ -1,7 +1,13 @@
-export default function Api() {
+interface PhotosProps {
+  params: {
+    slug: string
+  }
+}
+
+export default function Photos({ params: { slug } }: PhotosProps) {
   return (
     <div>
-      <h2>api</h2>
+      <h2>{slug}</h2>
     </div>
   )
 }

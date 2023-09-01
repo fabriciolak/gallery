@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { tw } from '#/lib/utils'
+import { tw } from '@/lib/utils'
 import { Slot } from '@radix-ui/react-slot'
 import { tv, VariantProps } from 'tailwind-variants'
 

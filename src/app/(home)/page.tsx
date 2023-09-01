@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { Button } from '@/components/Button'
 import { Link } from '@/components/Link'
-import { tw } from '#/lib/utils'
+import { tw } from '@/lib/utils'
 import { Search } from 'lucide-react'
 
 import Image from 'next/image'
