@@ -6,7 +6,13 @@ module.exports = {
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
-    extend: {},
+    extend: {
+      width: {
+        content: '80rem',
+        'heading-size': '45rem',
+        'grid-image': 'calc(100vw - 200px)',
+      },
+    },
   },
-  plugins: [],
+  plugins: ['@tailwindcss/line-clamp'],
 }
