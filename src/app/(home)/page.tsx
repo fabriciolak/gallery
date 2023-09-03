@@ -1,13 +1,18 @@
 import * as React from 'react'
-import { Button } from '@/components/Button'
-import { Link } from '@/components/Link'
+import NextImage from 'next/image'
+
+import { DownloadIcon, Search } from 'lucide-react'
+
+import api from '@/lib/api'
 import { tw } from '@/lib/utils'
-import { Search } from 'lucide-react'
+import { Link } from '@/components/Link'
+import { Button } from '@/components/Button'
+import { UnsplashPhotoResponse } from '@/@types/unsplash'
 
-import Image from 'next/image'
-import OceanFloorImage from '#/assets/images/islands-of-neom-neom-saudi-arabia.jpg'
+export default async function Page() {
+  const response = await api.get<UnsplashPhotoResponse[]>('/photos')
+  const photos = response.data
 
-export default function Page() {
   return (
     <div className="w-full h-full xl:w-content xl:mx-auto space-y-12 py-6">
       {/* Heading */}
@@ -74,10 +79,60 @@ export default function Page() {
       </div>
 
       {/* Masonry layout */}
-
       <div className="w-full text-center">
         <span className="font-medium text-xs">Search for images for free</span>
-        <div className="w-full xl:p-4 grid grid-cols-2 xl:grid-cols-3 grid-rows-2"></div>
+        <div className="w-full xl:p-4 p-6 columns-1 md:columns-2 lg:columns-3 items-start gap-x-6">
+          {photos.map((photo, index) => (
+            <div key={photo.id} className="py-4 group relative">
+              <figure className="focus-within:ring line-clamp-2 focus-within:ring-zinc-400 focus-within:ring-offset-2 rounded-sm">
+                <div>
+                  <Link
+                    // itemProp="contentURL"
+                    title={photo.description}
+                    href={photo.links.html}
+                  >
+                    <NextImage
+                      src={photo.urls.regular}
+                      alt={photo.description}
+                      width={photo.width}
+                      height={photo.height}
+                      className="rounded-sm"
+                    />
+                  </Link>
+                </div>
+
+                <div className="absolute hidden w-full bottom-8 px-4 group-hover:flex justify-between items-center">
+                  <div className="flex items-center gap-2 justify-start">
+                    <NextImage
+                      src={photo.user.profile_image.large}
+                      alt={`${photo.user.name}'s profile image`}
+                      width={32}
+                      height={32}
+                      className="rounded-full"
+                    />
+
+                    <Link href={photo.user.links.html}>
+                      <div className="font-medium text-sm text-zinc-100">
+                        {photo.user.name}
+                      </div>
+                      <div className="font-medium text-left text-xs text-zinc-100">
+                        {photo.user.username}
+                      </div>
+                    </Link>
+                  </div>
+
+                  <Button
+                    type="button"
+                    variant="default"
+                    className="h-8 w-8 rounded-full bg-zinc-100 hover:bg-zinc-300"
+                  >
+                    <DownloadIcon className="h-5 w-5 text-zinc-500 hover:text-zinc-700" />
+                  </Button>
+                </div>
+              </figure>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   )
