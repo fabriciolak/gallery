@@ -33,7 +33,7 @@ export default async function Page() {
                 href="https://unsplash.com/developers"
                 target="_blank"
                 rel="noreferrer"
-                role="https://unsplash.com/developers"
+                role="link"
                 className="text-lg font-medium px-0"
               >
                 The Unsplash API
@@ -50,7 +50,7 @@ export default async function Page() {
             'border border-zinc-400 focus-within:ring focus-within:ring-offset-2 focus-within:ring-zinc-400',
           )}
         >
-          <Button type="submit" className="w-11 h-11">
+          <Button type="submit" aria-label="submit" className="w-11 h-11">
             <Search className="h-5 w-5  text-zinc-500" />
           </Button>
 
@@ -62,7 +62,7 @@ export default async function Page() {
         </form>
 
         {/* Categories */}
-        <div role="categories" className="flex gap-2 w-full">
+        <div role="navigation" className="flex gap-2 w-full">
           <Button type="button" variant="outline" size="sm" asChild>
             <Link href="/">Nature</Link>
           </Button>
@@ -87,13 +87,15 @@ export default async function Page() {
               <figure className="focus-within:ring line-clamp-2 focus-within:ring-zinc-400 focus-within:ring-offset-2 rounded-sm">
                 <div>
                   <Link
-                    // itemProp="contentURL"
                     title={photo.description}
                     href={photo.links.html}
+                    aria-label={
+                      photo.description || `${photo.user.name}'s image`
+                    }
                   >
                     <NextImage
                       src={photo.urls.regular}
-                      alt={photo.description}
+                      alt={photo.description || `${photo.user.name}'s image`}
                       width={photo.width}
                       height={photo.height}
                       className="rounded-sm"
