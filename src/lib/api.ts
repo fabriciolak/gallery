@@ -3,7 +3,8 @@ import axios, { AxiosInstance, AxiosRequestConfig } from 'axios'
 const instance = axios.create({
   baseURL: 'https://api.unsplash.com/',
   params: {
-    per_page: 4,
+    per_page: 8,
+    q: 30,
   },
   headers: {
     'Accept-Version': 'v1',
