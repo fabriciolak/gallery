@@ -1,8 +1,6 @@
 import * as React from 'react'
 import NextImage, { type ImageProps as NextImageProps } from 'next/image'
 import { tw } from '@/lib/utils'
-import { Link, type LinkProps } from './Link'
-// import NextLink, { type LinkProps as NextLinkProps } from 'next/link'
 
 type GenericHTMLType = React.DetailedHTMLProps<
   React.HTMLAttributes<HTMLElement>,
@@ -14,7 +12,9 @@ const Root = React.forwardRef<
   React.HTMLAttributes<HTMLDivElement>
 >(({ children, className, ...props }, ref) => {
   return (
-  
+    <div className={className} {...props} ref={ref}>
+      {children}
+    </div>
   )
 })
 

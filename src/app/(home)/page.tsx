@@ -82,7 +82,7 @@ export default async function Page() {
       <div className="w-full text-center">
         <span className="font-medium text-xs">Search for images for free</span>
         <div className="w-full xl:p-4 p-6 columns-1 md:columns-2 lg:columns-3 items-start gap-x-6">
-          {photos.map((photo, index) => (
+          {photos.map((photo) => (
             <div key={photo.id} className="py-4 group relative">
               <figure className="focus-within:ring line-clamp-2 focus-within:ring-zinc-400 focus-within:ring-offset-2 rounded-sm">
                 <div>
