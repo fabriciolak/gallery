@@ -5,7 +5,7 @@ import { tv, VariantProps } from 'tailwind-variants'
 
 const buttonVariants = tv({
   base: [
-    'rounded-lg cursor-pointer inline-flex justify-center items-center font-semibold text-zinc-100',
+    'rounded-lg cursor-pointer inline-flex justify-center items-center font-semibold text-zinc-100 hover:bg-zinc-50',
     'focus-visible:ring focus-visible:ring-zinc-400 focus-visible:ring-offset-2 active:opacity-80 disabled:opacity-50 disabled:pointer-events-none',
   ],
   variants: {

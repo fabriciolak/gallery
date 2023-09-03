@@ -18,7 +18,8 @@ const Link = React.forwardRef<HTMLAnchorElement, NextLinkProps & LinkProps>(
           className,
         )}
       >
-        <span>{children}</span>
+        {/* <span>{children}</span> */}
+        {children}
       </NextLink>
     )
   },
