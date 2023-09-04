@@ -5,10 +5,11 @@ const instance = axios.create({
   params: {
     per_page: 8,
     q: 30,
+    // client_id: 'x0dpo4K4IcX2uhqXVZum_JS8-8pBDz1vE95N_hvJH84',
   },
   headers: {
     'Accept-Version': 'v1',
-    Authorization: `Client-ID ${process.env.UNSPLASH_API_ACCESS_KEY}`,
+    Authorization: 'Client-ID x0dpo4K4IcX2uhqXVZum_JS8-8pBDz1vE95N_hvJH84',
   },
 })
 
