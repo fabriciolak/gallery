@@ -57,8 +57,8 @@ export default function Page({ params: { slug } }: PageProps) {
   }, [data])
 
   return (
-    <div className="w-full h-full xl:w-content xl:mx-auto space-y-12 py-6">
-      <div className="w-full xl:mx-auto p-6 xl:p-4 flex flex-col mt-6 gap-6">
+    <div className="h-full w-full space-y-12 py-6 xl:mx-auto xl:w-content">
+      <div className="mt-6 flex w-full flex-col gap-6 p-6 xl:mx-auto xl:p-4">
         <div className="flex flex-col gap-2">
           <h1 className="text-4xl font-semibold text-zinc-700 first-letter:uppercase">
             {slug}
@@ -66,7 +66,7 @@ export default function Page({ params: { slug } }: PageProps) {
           <span className="text-lg font-medium text-zinc-500">
             Showing results for <span>{slug}</span>
           </span>
-          <span className="text-sm mt-1 font-normal text-zinc-400">
+          <span className="mt-1 text-sm font-normal text-zinc-400">
             {data?.pages[0].results.total &&
             data?.pages[0].results?.total >= 1000
               ? '+1000'
@@ -98,11 +98,11 @@ export default function Page({ params: { slug } }: PageProps) {
 
         <div>
           {/* <GridMasonry results={data?.pages[0].results} isLoading={isLoading} /> */}
-          <div className="w-full  columns-1 md:columns-2 lg:columns-3 items-start gap-x-6">
+          <div className="w-full columns-1  items-start gap-x-6 md:columns-2 lg:columns-3">
             {formattedData &&
               formattedData.map((photo) => (
-                <div key={photo.id} className="py-4 group relative">
-                  <figure className="focus-within:ring line-clamp-2 focus-within:ring-zinc-400 focus-within:ring-offset-2 rounded-sm">
+                <div key={photo.id} className="group relative py-4">
+                  <figure className="line-clamp-2 rounded-sm focus-within:ring focus-within:ring-zinc-400 focus-within:ring-offset-2">
                     <div>
                       <Link
                         title={photo.description}
@@ -123,8 +123,8 @@ export default function Page({ params: { slug } }: PageProps) {
                       </Link>
                     </div>
 
-                    <div className="absolute hidden w-full bottom-8 px-4 group-hover:flex justify-between items-center">
-                      <div className="flex items-center gap-2 justify-start">
+                    <div className="absolute bottom-8 hidden w-full items-center justify-between px-4 group-hover:flex">
+                      <div className="flex items-center justify-start gap-2">
                         <NextImage
                           src={photo.user.profile_image.large}
                           alt={`${photo.user.name}'s profile image`}
@@ -136,10 +136,10 @@ export default function Page({ params: { slug } }: PageProps) {
                         />
 
                         <Link href={photo.user.links.html}>
-                          <div className="font-medium text-sm text-zinc-100">
+                          <div className="text-sm font-medium text-zinc-100">
                             {photo.user.name}
                           </div>
-                          <div className="font-medium text-left text-xs text-zinc-100">
+                          <div className="text-left text-xs font-medium text-zinc-100">
                             {photo.user.username}
                           </div>
                         </Link>
@@ -158,7 +158,7 @@ export default function Page({ params: { slug } }: PageProps) {
               ))}
           </div>
 
-          <div className="mt-6 w-full flex justify-center">
+          <div className="mt-6 flex w-full justify-center">
             <Button
               variant="default"
               size="md"
