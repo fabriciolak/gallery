@@ -3,9 +3,7 @@ import axios, { AxiosInstance, AxiosRequestConfig } from 'axios'
 const instance = axios.create({
   baseURL: 'https://api.unsplash.com/',
   params: {
-    per_page: 8,
     q: 30,
-    // client_id: 'x0dpo4K4IcX2uhqXVZum_JS8-8pBDz1vE95N_hvJH84',
   },
   headers: {
     'Accept-Version': 'v1',

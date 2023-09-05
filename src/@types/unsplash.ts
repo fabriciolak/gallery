@@ -41,3 +41,9 @@ export type UnsplashPhotoResponse = {
   links: UnsplashPhotoLinksType
   user: UnsplashPhotoUserType
 }
+
+export interface UnsplashSearchPhotoResponse {
+  total: number
+  total_pages: number
+  results: UnsplashPhotoResponse[]
+}
