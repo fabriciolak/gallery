@@ -29,14 +29,14 @@ export default function Page() {
   }
 
   return (
-    <div className="w-full h-full xl:w-content xl:mx-auto space-y-12 py-6">
+    <div className="h-full w-full space-y-12 py-6 xl:mx-auto xl:w-content">
       {/* Heading */}
-      <div className="w-full xl:w-heading-size xl:mx-auto p-6 xl:p-4 flex flex-col gap-6">
+      <div className="flex w-full flex-col gap-6 p-6 xl:mx-auto xl:w-heading-size xl:p-4">
         <div className="w-full space-y-6">
-          <h1 className="font-bold text-6xl text-center">
+          <h1 className="text-center text-6xl font-bold">
             Find Stunning Images in a Snap!
           </h1>
-          <p className="font-medium text-lg text-center">
+          <p className="text-center text-lg font-medium">
             Unlock Beauty. Powered by{' '}
             <Button
               name="Unsplash website"
@@ -49,7 +49,7 @@ export default function Page() {
                 target="_blank"
                 rel="noreferrer"
                 role="link"
-                className="text-lg font-medium px-0"
+                className="px-0 text-lg font-medium"
               >
                 The Unsplash API
               </Link>
@@ -62,34 +62,34 @@ export default function Page() {
         <form
           onSubmit={handleSubmit}
           className={tw(
-            'w-full p-2 flex justify-center gap-2 items-center rounded-lg',
-            'border border-zinc-400 focus-within:ring focus-within:ring-offset-2 focus-within:ring-zinc-400',
+            'flex w-full items-center justify-center gap-2 rounded-lg p-2',
+            'border border-zinc-400 focus-within:ring focus-within:ring-zinc-400 focus-within:ring-offset-2',
           )}
         >
-          <Button type="submit" aria-label="submit" className="w-11 h-11">
+          <Button type="submit" aria-label="submit" className="h-11 w-11">
             <Search className="h-5 w-5  text-zinc-500" />
           </Button>
 
           <input
             type="text"
             placeholder="Search for an image"
-            className="flex-1 px-4 py-2 rounded-lg text-lg outline-none text-zinc-700 font-medium placeholder:text-zinc-400"
+            className="flex-1 rounded-lg px-4 py-2 text-lg font-medium text-zinc-700 outline-none placeholder:text-zinc-400"
           />
         </form>
 
         {/* Categories */}
-        <div role="navigation" className="flex gap-2 w-full">
+        <div role="navigation" className="flex w-full gap-2">
           <Button type="button" variant="outline" size="sm" asChild>
-            <Link href="/">Nature</Link>
+            <Link href="/photos/nature">Nature</Link>
           </Button>
           <Button type="button" variant="outline" size="sm" asChild>
-            <Link href="/">Health and wellness</Link>
+            <Link href="/photos/health-and-wellness">Health and wellness</Link>
           </Button>
           <Button type="button" variant="outline" size="sm" asChild>
-            <Link href="/">3D Renders</Link>
+            <Link href="/photos/3d-renders">3D Renders</Link>
           </Button>
           <Button type="button" variant="outline" size="sm" asChild>
-            <Link href="/">Film</Link>
+            <Link href="/photos/film">Film</Link>
           </Button>
         </div>
       </div>
@@ -97,17 +97,17 @@ export default function Page() {
       {/* Masonry layout */}
 
       <div className="w-full text-center">
-        <span className="font-medium text-xs">Search for images for free</span>
+        <span className="text-xs font-medium">Search for images for free</span>
 
         {isLoading ? (
-          <div className="mt-20 w-full flex justify-center items-center">
-            <Loader className="animate-spin w-6 h-6 text-zinc-700" />
+          <div className="mt-20 flex w-full items-center justify-center">
+            <Loader className="h-6 w-6 animate-spin text-zinc-700" />
           </div>
         ) : (
-          <div className="w-full xl:p-4 p-6 columns-1 md:columns-2 lg:columns-3 items-start gap-x-6">
+          <div className="w-full columns-1 items-start gap-x-6 p-6 md:columns-2 lg:columns-3 xl:p-4">
             {photos?.map((photo) => (
-              <div key={photo.id} className="py-4 group relative">
-                <figure className="focus-within:ring line-clamp-2 focus-within:ring-zinc-400 focus-within:ring-offset-2 rounded-sm">
+              <div key={photo.id} className="group relative py-4">
+                <figure className="line-clamp-2 rounded-sm focus-within:ring focus-within:ring-zinc-400 focus-within:ring-offset-2">
                   <div>
                     <Link
                       title={photo.description}
@@ -126,8 +126,8 @@ export default function Page() {
                     </Link>
                   </div>
 
-                  <div className="absolute hidden w-full bottom-8 px-4 group-hover:flex justify-between items-center">
-                    <div className="flex items-center gap-2 justify-start">
+                  <div className="absolute bottom-8 hidden w-full items-center justify-between px-4 group-hover:flex">
+                    <div className="flex items-center justify-start gap-2">
                       <NextImage
                         src={photo.user.profile_image.large}
                         alt={`${photo.user.name}'s profile image`}
@@ -139,10 +139,10 @@ export default function Page() {
                       />
 
                       <Link href={photo.user.links.html}>
-                        <div className="font-medium text-sm text-zinc-100">
+                        <div className="text-sm font-medium text-zinc-100">
                           {photo.user.name}
                         </div>
-                        <div className="font-medium text-left text-xs text-zinc-100">
+                        <div className="text-left text-xs font-medium text-zinc-100">
                           {photo.user.username}
                         </div>
                       </Link>
