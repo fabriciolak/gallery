@@ -14,7 +14,7 @@ const Link = React.forwardRef<HTMLAnchorElement, NextLinkProps & LinkProps>(
         passHref
         ref={ref}
         className={tw(
-          'focus:ring-2 focus:ring-offset-1 focus:ring-zinc-400 rounded-sm outline-none',
+          'rounded-sm outline-none focus:ring-2 focus:ring-zinc-400 focus:ring-offset-1',
           className,
         )}
       >

@@ -27,7 +27,7 @@ const Image = React.forwardRef<HTMLImageElement, NextImageProps>(
         ref={ref}
         {...props}
         className={tw(
-          'rounded w-full focus-within:ring-2 focus-within:ring-zinc-400 focus-within:ring-offset-2',
+          'w-full rounded focus-within:ring-2 focus-within:ring-zinc-400 focus-within:ring-offset-2',
           className,
         )}
       >
@@ -46,7 +46,7 @@ const Description = React.forwardRef<HTMLElement, GenericHTMLType>(
         ref={ref}
         {...props}
         className={tw(
-          'text-xs mt-2 text-zinc-700/80 group-hover:text-zinc-700/100 font-medium line-clamp-2 text-left',
+          'mt-2 line-clamp-2 text-left text-xs font-medium text-zinc-700/80 group-hover:text-zinc-700/100',
           className,
         )}
       >
@@ -67,7 +67,7 @@ const Author = React.forwardRef<
       ref={ref}
       {...props}
       className={tw(
-        'text-sm mt-2 text-zinc-700 font-semibold text-left',
+        'mt-2 text-left text-sm font-semibold text-zinc-700',
         className,
       )}
     >

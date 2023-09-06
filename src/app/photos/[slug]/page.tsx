@@ -1,17 +1,15 @@
 'use client'
 
-import {
-  UnsplashSearchPhotoResponse,
-  UnsplashPhotoResponse,
-} from '@/@types/unsplash'
-import { Button } from '@/components/Button'
-import { GridMasonry } from '@/components/GridMasonry'
-import { Link } from '@/components/Link'
-import api from '@/lib/api'
+import React from 'react'
+import NextImage from 'next/image'
+
 import { useInfiniteQuery } from '@tanstack/react-query'
 import { DownloadIcon } from 'lucide-react'
-import NextImage from 'next/image'
-import React from 'react'
+
+import api from '@/lib/api'
+import { Button } from '@/components/Button'
+import { Link } from '@/components/Link'
+import { UnsplashSearchPhotoResponse } from '@/@types/unsplash'
 
 interface PageProps {
   params: {
@@ -43,7 +41,7 @@ export default function Page({ params: { slug } }: PageProps) {
     }
   }
 
-  const { data, isLoading, fetchNextPage, hasNextPage, isFetchingNextPage } =
+  const { data, fetchNextPage, hasNextPage, isFetchingNextPage } =
     useInfiniteQuery({
       queryKey: ['photos', slug],
       queryFn: fetchImages,

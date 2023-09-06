@@ -1,22 +1,21 @@
 'use client'
+
 import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
+
 import { Button } from '@/components/Button'
 
 export default function NotFound() {
   const [coords, setCoords] = React.useState({ x: 0, y: 0 })
-
-  React.useEffect(() => {
+  React.useMemo(() => {
     const handleMousePos = (event: MouseEvent) => {
       setCoords({
         x: event.clientX,
         y: event.clientY,
       })
     }
-
     window.addEventListener('mousemove', handleMousePos)
-
     return () => {
       window.removeEventListener('mousemove', handleMousePos)
     }
@@ -42,7 +41,9 @@ export default function NotFound() {
         <h2 className="animate-glowing-text text-6xl font-bold text-white [text-shadow:0px_0px_0px_#fff]">
           Page not found
         </h2>
-        <span className='text-zinc-100'>Hmm, the page you were looking for does not exist.</span>
+        <span className="text-zinc-100">
+          Hmm, the page you were looking for does not exist.
+        </span>
         <Button
           variant="default"
           size="md"
