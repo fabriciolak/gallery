@@ -15,9 +15,12 @@ export default function NotFound() {
         y: event.clientY,
       })
     }
-    window.addEventListener('mousemove', handleMousePos)
-    return () => {
-      window.removeEventListener('mousemove', handleMousePos)
+
+    if (typeof window !== 'undefined') {
+      window.addEventListener('mousemove', handleMousePos)
+      return () => {
+        window.removeEventListener('mousemove', handleMousePos)
+      }
     }
   }, [])
 
