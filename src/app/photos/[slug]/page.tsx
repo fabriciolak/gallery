@@ -2,8 +2,9 @@
 
 import React from 'react'
 import NextImage from 'next/image'
+import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 
-import { useInfiniteQuery } from '@tanstack/react-query'
+import { QueryKey, useInfiniteQuery } from '@tanstack/react-query'
 import { DownloadIcon } from 'lucide-react'
 
 import api from '@/lib/api'
@@ -23,6 +24,8 @@ type UsePhotoResponse = {
 }
 
 export default function Page({ params: { slug } }: PageProps) {
+  // const [orderBy, setOrderBy] = React.useState<string>('relevant')
+
   const fetchImages = async ({ pageParam = 1 }): Promise<UsePhotoResponse> => {
     const { data } = await api.get<UnsplashSearchPhotoResponse>(
       `/search/photos`,
@@ -41,18 +44,40 @@ export default function Page({ params: { slug } }: PageProps) {
     }
   }
 
-  const { data, fetchNextPage, hasNextPage, isFetchingNextPage } =
-    useInfiniteQuery({
-      queryKey: ['photos', slug],
-      queryFn: fetchImages,
-      // queryFn: fetchImages,
-      getNextPageParam: (lastPage) => lastPage.nextPage + 1,
-    })
+  const {
+    data,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+    refetch,
+    isRefetching,
+    isRefetchError,
+  } = useInfiniteQuery({
+    queryKey: ['photos', slug],
+    queryFn: fetchImages,
+    getNextPageParam: (lastPage) => lastPage.nextPage + 1,
+  })
 
   const formattedData = React.useMemo(() => {
     const formatted = data?.pages.flatMap((data) => data.results.results.flat())
+
     return formatted
   }, [data])
+
+  const formattedResultsSearch = React.useMemo(() => {
+    const photosResultLength =
+      data?.pages[0].results.total && data?.pages[0].results?.total >= 1000
+        ? '+1000'
+        : data?.pages[0].results.total
+
+    const peoplesImages = data?.pages[0].results.results.map((a) => a.user)
+      .length
+    return `${photosResultLength} photos from ${peoplesImages} people`
+  }, [data])
+
+  if (isRefetching && !isRefetchError) {
+    return <div>Refetching</div>
+  }
 
   return (
     <div className="h-full w-full space-y-12 py-6 xl:mx-auto xl:w-content">
@@ -65,12 +90,7 @@ export default function Page({ params: { slug } }: PageProps) {
             Showing results for <span>{slug}</span>
           </span>
           <span className="mt-1 text-sm font-normal text-zinc-400">
-            {data?.pages[0].results.total &&
-            data?.pages[0].results?.total >= 1000
-              ? '+1000'
-              : data?.pages[0].results.total}
-            photos from{' '}
-            {data?.pages[0].results.results.map((a) => a.user).length} people
+            {formattedResultsSearch}
           </span>
         </div>
 
@@ -80,6 +100,7 @@ export default function Page({ params: { slug } }: PageProps) {
             type="button"
             aria-label="Popular"
             size="md"
+            // onClick={() => setOrderBy('relevant-1')}
           >
             Popular
           </Button>
@@ -88,14 +109,13 @@ export default function Page({ params: { slug } }: PageProps) {
             type="button"
             aria-label="Recent"
             size="md"
-            // className="hover:bg-zinc-900/90"
+            // onClick={() => setOrderBy('latest-2')}
           >
             Recent
           </Button>
         </div>
 
         <div>
-          {/* <GridMasonry results={data?.pages[0].results} isLoading={isLoading} /> */}
           <div className="w-full columns-1  items-start gap-x-6 md:columns-2 lg:columns-3">
             {formattedData &&
               formattedData.map((photo) => (
@@ -167,26 +187,11 @@ export default function Page({ params: { slug } }: PageProps) {
                 ? 'Carregando mais...'
                 : hasNextPage
                 ? 'Carregar mais'
-                : 'Nada mais para carregar.'}
+                : null}
             </Button>
           </div>
         </div>
       </div>
-    </div>
-  )
-
-  return (
-    <div>
-      <Button
-        disabled={!hasNextPage || isFetchingNextPage}
-        onClick={() => fetchNextPage()}
-      >
-        {isFetchingNextPage
-          ? 'Carregando mais...'
-          : hasNextPage
-          ? 'Carregar mais'
-          : 'Nada mais para carregar.'}
-      </Button>
     </div>
   )
 }
