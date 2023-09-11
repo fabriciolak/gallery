@@ -2,9 +2,8 @@
 
 import React from 'react'
 import NextImage from 'next/image'
-import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 
-import { QueryKey, useInfiniteQuery } from '@tanstack/react-query'
+import { useInfiniteQuery } from '@tanstack/react-query'
 import { DownloadIcon } from 'lucide-react'
 
 import api from '@/lib/api'
@@ -49,7 +48,6 @@ export default function Page({ params: { slug } }: PageProps) {
     fetchNextPage,
     hasNextPage,
     isFetchingNextPage,
-    refetch,
     isRefetching,
     isRefetchError,
   } = useInfiniteQuery({
